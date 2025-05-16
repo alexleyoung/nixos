@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 let
   myAliases = {
-    "ll" = "ls -l";
-    ".." = "cd ..";
     "c" = "clear";
+
+    "gaa" "git add .";
+    "gcm" "git commit -m";
+    "gp" "git push";
+    "gs" "git status -s";
   };
 in
 {

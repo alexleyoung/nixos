@@ -74,7 +74,9 @@
     isNormalUser = true;
     extraGroups = [ "networkmanager wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      tree
+      firefox
+      discord-ptb
+      ghostty
     ];
   };
 
@@ -83,7 +85,6 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -93,9 +94,8 @@
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    discord-ptb
-    ghostty
     git
+    tree
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
