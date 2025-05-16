@@ -8,7 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # make sure version match
   };
 
-  outputs = {self, nixpkgs, home-manager, ...}:
+  outputs = {self, nixpkgs, home-manager, ...}@inputs:
   let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
@@ -18,14 +18,14 @@
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         inherit system;
-	modules = [ ./configuration.nix ];
+	modules = [ ./profiles/nix-pc/configuration.nix ];
       };
     };
 
     homeConfigurations = {
       alexy = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-	modules = [ ./home.nix ];
+	modules = [ ./profiles/nix-pc/home.nix ];
       };
     };
   };

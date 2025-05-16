@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./sh.nix
+    ../../user/shell/sh.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -25,7 +25,6 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    pkgs.zoxide
     pkgs.gh
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
