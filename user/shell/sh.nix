@@ -4,6 +4,7 @@ let
   myAliases = {
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
+    c = "clear";
 
     gt="git";
     gaa="git add .";

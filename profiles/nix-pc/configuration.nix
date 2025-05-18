@@ -2,12 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nix-gc-env, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ../../system/hardware-configuration.nix
+      # nix-gc-env.nixosModules.default
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -72,7 +73,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alexy = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
       discord-ptb
@@ -99,6 +100,34 @@
     zsh
     home-manager
   ];
+
+  # auto-upgrade
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   flake = inputs.self.outPath;
+  #   flags = [
+  #     "--update-input"
+  #     "nixpkgs"
+  #     "-L" # print build logs
+  #   ];
+  #   dates = "02:00";
+  #   randomizedDelaySec = "45min";
+  # };
+
+  # auto-cleanup
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   # delete_generations = "+5"; # Option added by nix-gc-env
+  # };
+  
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # dynamic libraries for unpackaged
+    # programs here
+  ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
