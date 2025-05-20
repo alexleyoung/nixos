@@ -113,7 +113,7 @@
     waybar
     dunst
     libnotify
-    nm-applet
+    networkmanagerapplet
     swww
     rofi-wayland
   ];
