@@ -55,12 +55,22 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # hyprland
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  programs.hyprland.enable = true;
+  security.polkit.enable = true;
+
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -75,9 +85,6 @@
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      firefox
-      discord-ptb
-      ghostty
     ];
   };
 
@@ -99,6 +106,16 @@
     tree
     zsh
     home-manager
+    firefox
+
+    # hyprland
+    hyprpolkitagent
+    waybar
+    dunst
+    libnotify
+    nm-applet
+    swww
+    rofi-wayland
   ];
 
   # auto-upgrade
