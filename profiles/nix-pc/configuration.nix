@@ -109,6 +109,7 @@
     firefox
 
     # hyprland
+    font-awesome
     hyprpolkitagent
     waybar
     dunst

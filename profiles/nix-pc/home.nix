@@ -3,6 +3,8 @@
 {
   imports = [
     ../../user/shell/sh.nix
+    ../../user/lang/cc.nix
+    ../../user/lang/rust.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -33,6 +35,7 @@
     pkgs.spotify
     pkgs.vesktop
     pkgs.ghostty
+    pkgs.google-chrome
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
