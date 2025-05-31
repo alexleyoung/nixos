@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ../../system/hardware-configuration.nix
+      ../../system/utils/ripgrep.nix
       # nix-gc-env.nixosModules.default
     ];
 
@@ -107,6 +108,7 @@
     zsh
     home-manager
     firefox
+    tmux
 
     # hyprland
     font-awesome
@@ -117,6 +119,11 @@
     networkmanagerapplet
     swww
     rofi-wayland
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
   ];
 
   # auto-upgrade
