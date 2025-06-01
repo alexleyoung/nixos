@@ -41,26 +41,8 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable KDE Plasma 6
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # hyprland
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  programs.hyprland.enable = true;
-  security.polkit.enable = true;
 
   # Enable sound.
   # services.pulseaudio.enable = true;
@@ -94,6 +76,17 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  # sdmm
+   services.xserver.enable = true;
+   services.displayManager.sddm.enable = true;
+   services.displayManager.sddm.wayland.enable = true;
+   services.displayManager.sddm.theme = "where_is_my_sddm_theme";
+
+  # hyprland
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  programs.hyprland.enable = true;
+  security.polkit.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -121,12 +114,13 @@
     swww
     rofi-wayland
     hyprlock
+    where-is-my-sddm-theme
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
-    nerd-fonts.caskaydiacove-mono
+    nerd-fonts.caskaydia-cove
   ];
 
   # auto-upgrade
