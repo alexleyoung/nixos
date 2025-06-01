@@ -102,6 +102,7 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     neovim
+    xclip
     wget
     git
     tree
@@ -119,11 +120,13 @@
     networkmanagerapplet
     swww
     rofi-wayland
+    hyprlock
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydiacove-mono
   ];
 
   # auto-upgrade
