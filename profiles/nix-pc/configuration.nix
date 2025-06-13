@@ -62,6 +62,7 @@
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alexy = {
@@ -77,16 +78,36 @@
   programs.zsh.enable = true;
 
   # sdmm
-   services.xserver.enable = true;
-   services.displayManager.sddm.enable = true;
-   services.displayManager.sddm.wayland.enable = true;
-   services.displayManager.sddm.theme = "where_is_my_sddm_theme";
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.theme = "where_is_my_sddm_theme";
 
   # hyprland
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   programs.hyprland.enable = true;
   security.polkit.enable = true;
+
+  security = {
+    # If enabled, pam_wallet will attempt to automatically unlock the user’s default KDE wallet upon login.
+    # If the user has no wallet named “kdewallet”, or the login password does not match their wallet password,
+    # KDE will prompt separately after login.
+    pam = {
+      services = {
+        login.kwallet = {
+          enable = true;
+          package = kdePackages.kwallet-pam;
+        };
+        alexy = {
+          kwallet = {
+            enable = true;
+            package = pkgs.kdePackages.kwallet-pam;
+          };
+        };
+      };
+    };
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -115,6 +136,8 @@
     rofi-wayland
     hyprlock
     where-is-my-sddm-theme
+    kdePackages.kwallet
+    kdePackages.kwalletmanager
   ];
 
   fonts.packages = with pkgs; [
